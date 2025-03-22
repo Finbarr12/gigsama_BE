@@ -38,7 +38,10 @@ async function connectToMongoDB() {
       return;
     }
 
-    client = new MongoClient(process.env.MONGODB_URI);
+    client = new MongoClient(
+      process.env.MONGODB_URI ||
+        "mongodb+srv://FinbarrDB:codelab06@cluster0.2xzneqt.mongodb.net/gigsama?retryWrites=true&w=majority&appName=Cluster0"
+    );
     await client.connect();
     db = client.db(process.env.MONGODB_DB_NAME || "schema_designer");
     console.log("Connected to MongoDB successfully");
